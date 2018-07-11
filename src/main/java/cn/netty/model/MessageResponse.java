@@ -8,7 +8,16 @@ import lombok.Data;
  */
 @Data
 public class MessageResponse {
+    /**
+     * 标识唯一请求id
+     */
     private String requestId;
+    /**
+     * 返回状态码
+     */
     private Integer statusCode;
+    /**
+     * 响应数据
+     */
     private Object rpcResponse;
 }
