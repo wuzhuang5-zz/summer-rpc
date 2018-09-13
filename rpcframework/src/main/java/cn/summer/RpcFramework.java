@@ -1,4 +1,4 @@
-package cn.wz;
+package cn.summer;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,7 +18,9 @@ public class RpcFramework {
      * @throws Exception
      */
     public static void export(final Object service, int port) throws Exception {
-
+        /**
+         * 参数判断
+         */
         if(service == null) {
             throw new IllegalArgumentException("service instance == null");
         }
@@ -26,22 +28,42 @@ public class RpcFramework {
             throw new IllegalArgumentException("Invalid port " + port);
         }
 
-        System.out.println("Export service " + service.getClass().getName() + " on port " + port);
-
+        System.out.println("暴露服务 " + service.getClass().getName() + " on port " + port);
+        /**
+         * 建立serverSocket
+         */
         ServerSocket serverSocket = new ServerSocket(port);
 
         for(;;) {
             try {
+                /**
+                 * 阻塞监听连接
+                 */
                 final Socket socket = serverSocket.accept();
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
+                            /**
+                             * 将socket数据转化为对象
+                             */
                             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                             try {
+                                /**
+                                 * 方法名
+                                 */
                                 String methodName = inputStream.readUTF();
+                                System.out.println("接收到的方法名 : " + methodName);
+                                /**
+                                 * 方法参数
+                                 */
                                 Class<?>[] parameterTypes = (Class<?>[])inputStream.readObject();
+                                /**
+                                 *
+                                 */
                                 Object[] arguments = (Object[])inputStream.readObject();
+
                                 ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
                                 try {
                                     Method method = service.getClass().getMethod(methodName, parameterTypes);
