@@ -1,4 +1,4 @@
-package cn.summer;
+package cn.summer.protocol;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,14 +10,9 @@ import java.lang.reflect.Proxy;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class RpcFramework {
-    /**
-     * 暴露服务
-     * @param service 服务实现
-     * @param port 服务端口
-     * @throws Exception
-     */
-    public static void export(final Object service, int port) throws Exception {
+public class RpcCore implements RpcProtocol {
+    @Override
+    public void export(Object service, int port) throws Exception{
         /**
          * 参数判断
          */
@@ -63,12 +58,19 @@ public class RpcFramework {
                                  *
                                  */
                                 Object[] arguments = (Object[])inputStream.readObject();
+                                for (int i=0; i<arguments.length; i++) {
+                                    System.out.println("arguments-->"+arguments[i]);
+                                }
 
                                 ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+
                                 try {
+
                                     Method method = service.getClass().getMethod(methodName, parameterTypes);
+                                    //反射调用本地方法
                                     Object result = method.invoke(service,arguments);
                                     outputStream.writeObject(result);
+
                                 } catch (NoSuchMethodException e) {
                                     e.printStackTrace();
                                 } catch (IllegalAccessException e) {
@@ -91,18 +93,8 @@ public class RpcFramework {
         }
     }
 
-    /**
-     * 引用服务
-     * @param interfaceClass  接口类型
-     * @param host 主机
-     * @param port 端口
-     * @param <T>
-     * @return 远程服务
-     * @throws Exception
-     */
-    @SuppressWarnings("unchecked")
-    public static<T> T refer(final Class<T> interfaceClass, final String host, final int port) throws Exception{
-
+    @Override
+    public Object refer(Class interfaceClass, String host, int port) {
         //验证参数
         if(interfaceClass == null) {
             throw new IllegalArgumentException("interfaceClass == null");
@@ -119,7 +111,7 @@ public class RpcFramework {
 
         System.out.println("get remote service " + interfaceClass.getName() + " from server " +host + ":" + port);
 
-        return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass}, (InvocationHandler) (proxy, method, args) -> {
+        return Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass}, (InvocationHandler) (proxy, method, args) -> {
             Socket socket = new Socket(host,port);
             try {
                 ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -145,4 +137,4 @@ public class RpcFramework {
             }
         });
     }
-}
+    }
