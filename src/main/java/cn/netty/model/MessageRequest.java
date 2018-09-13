@@ -1,6 +1,5 @@
 package cn.netty.model;
 
-import lombok.Data;
 
 import java.io.Serializable;
 
@@ -8,7 +7,6 @@ import java.io.Serializable;
  * 服务请求消息
  * @author wz
  */
-@Data
 public class MessageRequest implements Serializable {
     private static final long serialVersionUID = -5097523035983632908L;
     /**
