@@ -1,8 +1,8 @@
-package com.wd.provider;
+package cn.wz;
 
 public class HelloServiceImpl implements HelloService {
     @Override
-    public String hello(String name) {
+    public String sayHello(String name) {
         return "Hello " + name;
     }
 }

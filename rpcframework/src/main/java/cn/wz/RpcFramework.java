@@ -1,4 +1,4 @@
-package com.wd.rpc;
+package cn.wz;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -36,31 +36,31 @@ public class RpcFramework {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                       try {
-                           ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-                           try {
-                               String methodName = inputStream.readUTF();
-                               Class<?>[] parameterTypes = (Class<?>[])inputStream.readObject();
-                               Object[] arguments = (Object[])inputStream.readObject();
-                               ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-                               try {
-                                   Method method = service.getClass().getMethod(methodName, parameterTypes);
-                                   Object result = method.invoke(service,arguments);
-                                   outputStream.writeObject(result);
-                               } catch (NoSuchMethodException e) {
-                                   e.printStackTrace();
-                               } catch (IllegalAccessException e) {
-                                   e.printStackTrace();
-                               }
-                               catch (InvocationTargetException e) {
-                                   e.printStackTrace();
-                               }
-                           } catch (ClassNotFoundException e) {
-                               e.printStackTrace();
-                           }
-                       } catch (IOException e) {
-                           e.printStackTrace();
-                       }
+                        try {
+                            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                            try {
+                                String methodName = inputStream.readUTF();
+                                Class<?>[] parameterTypes = (Class<?>[])inputStream.readObject();
+                                Object[] arguments = (Object[])inputStream.readObject();
+                                ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+                                try {
+                                    Method method = service.getClass().getMethod(methodName, parameterTypes);
+                                    Object result = method.invoke(service,arguments);
+                                    outputStream.writeObject(result);
+                                } catch (NoSuchMethodException e) {
+                                    e.printStackTrace();
+                                } catch (IllegalAccessException e) {
+                                    e.printStackTrace();
+                                }
+                                catch (InvocationTargetException e) {
+                                    e.printStackTrace();
+                                }
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }).start();
             } catch (Exception e) {
