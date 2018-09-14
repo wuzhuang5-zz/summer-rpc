@@ -1,5 +1,7 @@
 package cn.summer.protocol;
 
+import cn.summer.registry.ZkRegistry;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -11,6 +13,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class RpcCore implements RpcProtocol {
+
+    private static final ZkRegistry zkRegistry = new ZkRegistry();
+
     @Override
     public void export(Object service, int port) throws Exception{
         /**
@@ -54,9 +59,6 @@ public class RpcCore implements RpcProtocol {
                                  * 方法参数
                                  */
                                 Class<?>[] parameterTypes = (Class<?>[])inputStream.readObject();
-                                /**
-                                 *
-                                 */
                                 Object[] arguments = (Object[])inputStream.readObject();
                                 for (int i=0; i<arguments.length; i++) {
                                     System.out.println("arguments-->"+arguments[i]);
@@ -70,6 +72,7 @@ public class RpcCore implements RpcProtocol {
                                     //反射调用本地方法
                                     Object result = method.invoke(service,arguments);
                                     outputStream.writeObject(result);
+                                    zkRegistry.registry("127.0.0.1");
 
                                 } catch (NoSuchMethodException e) {
                                     e.printStackTrace();
