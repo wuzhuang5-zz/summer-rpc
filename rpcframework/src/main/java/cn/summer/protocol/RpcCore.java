@@ -1,7 +1,5 @@
 package cn.summer.protocol;
 
-import cn.summer.registry.ZkRegistry;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -112,7 +110,7 @@ public class RpcCore implements RpcProtocol {
             throw new IllegalArgumentException("Invlid port " + port);
         }
 
-        System.out.println("get remote service " + interfaceClass.getName() + " from server " +host + ":" + port);
+        System.out.println("get transport service " + interfaceClass.getName() + " from server " +host + ":" + port);
 
         return Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass}, (InvocationHandler) (proxy, method, args) -> {
             Socket socket = new Socket(host,port);

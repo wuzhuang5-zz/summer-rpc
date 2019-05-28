@@ -1,4 +1,4 @@
-package cn.summer.netty;
+package cn.summer.transport;
 
 public class ReceiveByNetty {
 }
