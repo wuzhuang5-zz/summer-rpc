@@ -1,7 +1,6 @@
-package cn.summer.protocol;
+package com.summer.protocol;
 
 /**
- * @author wz
  * rpc协议
  */
 public interface RpcProtocol {

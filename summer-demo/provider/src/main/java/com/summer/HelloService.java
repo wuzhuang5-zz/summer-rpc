@@ -1,4 +1,4 @@
-package cn.summer;
+package com.summer;
 
 public interface HelloService {
 

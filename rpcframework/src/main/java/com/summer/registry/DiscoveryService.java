@@ -1,6 +1,6 @@
-package cn.summer.registry;
+package com.summer.registry;
 
-import cn.summer.protocol.URL;
+import com.summer.protocol.URL;
 
 import java.util.List;
 
