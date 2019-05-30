@@ -11,6 +11,13 @@
     <modules>
       <module>rpcframework</module>
       <module>summer-demo</module>
+        <module>summer-proxy</module>
+      <module>summer-config</module>
+      <module>summer-common</module>
+      <module>summer-registry</module>
+      <module>summer-cluster</module>
+      <module>summer-serialize</module>
+      <module>summer-transport</module>
     </modules>
 
     <name>summer-rpc</name>
