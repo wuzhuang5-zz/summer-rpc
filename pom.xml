@@ -18,6 +18,7 @@
       <module>summer-cluster</module>
       <module>summer-serializer</module>
       <module>summer-transport</module>
+        <module>summer-test</module>
     </modules>
 
     <name>summer-rpc</name>
