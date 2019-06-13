@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-      <module>summerframework</module>
       <module>summer-demo</module>
         <module>summer-proxy</module>
       <module>summer-config</module>
@@ -19,6 +18,7 @@
       <module>summer-serializer</module>
       <module>summer-transport</module>
         <module>summer-test</module>
+        <module>summer-protocol</module>
     </modules>
 
     <name>summer-rpc</name>
@@ -36,7 +36,11 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.8</version>
+    </dependency>
   </dependencies>
 
 </project>
