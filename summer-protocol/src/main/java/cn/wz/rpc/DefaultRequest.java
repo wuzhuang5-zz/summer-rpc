@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class DefaultRequest implements Serializable {
+public class DefaultRequest implements Request , Serializable{
     private static final long serialVersionUID = 6777332257932913864L;
 
     private String interfaceName;
