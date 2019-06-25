@@ -4,20 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RpcContext {
-    private static final ThreadLocal<RpcContext> LOCAL_CONTEXT = new ThreadLocal<RpcContext>(){
-        //匿名类
-        @Override
-        protected RpcContext initialValue() {
-            return new RpcContext();
-        }
-    };
+    private static final ThreadLocal<RpcContext> LOCAL_CONTEXT = ThreadLocal.withInitial(RpcContext::new);
     private Map<Object, Object> attributes = new HashMap<>();
     private Map<String, String> attachments = new HashMap<>();
     private Request request;
     private Response response;
     private String clientRequestId = null;
 
-
+    /**
+     * 获取rpccontext实例
+     * @return
+     */
     public static RpcContext getRpcContext() {
         return LOCAL_CONTEXT.get();
     }
@@ -31,7 +28,7 @@ public class RpcContext {
         RpcContext rpcContext = new RpcContext();
         if(request != null) {
             rpcContext.setRequest(request);
-            rpcContext.setClientRequestId(request.get);
+            rpcContext.setClientRequestId(request.getAttachments());
         }
     }
     public void setAttributes(Object key, Object value) {
