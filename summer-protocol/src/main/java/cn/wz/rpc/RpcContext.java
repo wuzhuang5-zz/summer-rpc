@@ -4,11 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RpcContext {
+
     private static final ThreadLocal<RpcContext> LOCAL_CONTEXT = ThreadLocal.withInitial(RpcContext::new);
+
     private Map<Object, Object> attributes = new HashMap<>();
+
     private Map<String, String> attachments = new HashMap<>();
+
     private Request request;
+
     private Response response;
+
     private String clientRequestId = null;
 
     /**
@@ -34,12 +40,15 @@ public class RpcContext {
     public void setAttributes(Object key, Object value) {
         attributes.put(key, value);
     }
+
     public Object getAttributes(Object key) {
         return attributes.get(key);
     }
+
     public void setAttachments(String key, String value) {
         attachments.put(key, value);
     }
+
     public String getAttachments(String key) {
         return attachments.get(key);
     }
