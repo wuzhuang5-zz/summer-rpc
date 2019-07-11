@@ -22,4 +22,9 @@ public class LocalSwitcherService implements SwitcherService{
     public boolean isOpen(String switcherName) {
         return false;
     }
+
+    @Override
+    public void setValue(String switcherName, boolean value) {
+
+    }
 }
