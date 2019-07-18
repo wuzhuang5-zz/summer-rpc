@@ -19,6 +19,9 @@
     <modules>
         <module>provider</module>
         <module>consumer</module>
+        <module>client</module>
+        <module>server</module>
+        <module>api</module>
     </modules>
 
     <properties>

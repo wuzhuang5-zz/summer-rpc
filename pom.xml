@@ -20,6 +20,8 @@
         <module>summer-test</module>
         <module>summer-protocol</module>
         <module>summer-spring</module>
+        <module>summer-transport</module>
+      <module>summer-transport</module>
     </modules>
 
     <name>summer-rpc</name>
