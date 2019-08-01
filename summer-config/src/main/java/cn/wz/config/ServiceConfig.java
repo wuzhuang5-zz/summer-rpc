@@ -1,5 +1,10 @@
 package cn.wz.config;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author wz
  */
@@ -35,8 +40,15 @@ public class ServiceConfig<T> {
      */
     private String export;
 
-    public synchronized void export(){
+    private AtomicBoolean exported = new AtomicBoolean();
 
+    /**
+     * 暴露服务
+     */
+    public synchronized void export(){
+        if(exported.get()) {
+            Logger.WARNING
+        }
     }
     public void setVersion(String version) {
         this.version = version;

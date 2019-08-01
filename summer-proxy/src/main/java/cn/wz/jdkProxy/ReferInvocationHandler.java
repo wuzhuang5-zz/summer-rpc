@@ -1,7 +1,6 @@
 package cn.wz.jdkProxy;
 
 import cn.wz.Cluster;
-import cn.wz.rpc.DefaultRequest;
 import cn.wz.util.RequestIdGenerator;
 
 import java.lang.reflect.Method;

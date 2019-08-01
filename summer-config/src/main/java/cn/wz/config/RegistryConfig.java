@@ -1,5 +1,8 @@
 package cn.wz.config;
 
+/**
+ * 注册中心配置
+ */
 public class RegistryConfig {
     /**
      * 注册中心名
