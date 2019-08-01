@@ -1,4 +1,4 @@
-package cn.wz;
+package cn.wz.config;
 
 public class ReferenceConfig<T>{
 
