@@ -21,4 +21,12 @@ public class RegistryConfig {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getRegProtocol() {
+        return regProtocol;
+    }
+
+    public String getAddress() {
+        return address;
+    }
 }

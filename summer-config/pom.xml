@@ -12,8 +12,6 @@
     <artifactId>summer-config</artifactId>
 
     <name>summer-config</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,6 +32,18 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>cn.wz</groupId>
+            <artifactId>summer-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>
