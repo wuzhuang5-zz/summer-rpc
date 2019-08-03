@@ -113,7 +113,7 @@ public class ServiceConfig<T> {
         if (StringUtils.isBlank(protocolConfig.getName())) {
             protocolConfig.setName(ParamType.protocol.getValue());
         }
-        URL serviceUrl = new URL()
+        URL serviceUrl = new URL(protocolConfig.getName(), host, port, );
     }
 
     public void setVersion(String version) {
