@@ -5,6 +5,8 @@ import cn.wz.common.exception.SummerFrameworkException;
 import cn.wz.common.log.LoggerUtil;
 import cn.wz.common.util.NetUtil;
 import cn.wz.common.util.SummerConstans;
+import cn.wz.config.handler.ConfigHandler;
+import cn.wz.config.handler.ConfigHandlerImpl;
 import cn.wz.rpc.URL;
 import com.sun.media.jfxmedia.logging.Logger;
 import org.apache.commons.lang.StringUtils;
@@ -113,7 +115,9 @@ public class ServiceConfig<T> {
         if (StringUtils.isBlank(protocolConfig.getName())) {
             protocolConfig.setName(ParamType.protocol.getValue());
         }
-        URL serviceUrl = new URL(protocolConfig.getName(), host, port, );
+        URL serviceUrl = new URL(protocolConfig.getName(), host, port, interfaceClass.getName());
+        ConfigHandler configHandler = new ConfigHandlerImpl();
+        configHandler.export(interfaceClass, ref, registryList);
     }
 
     public void setVersion(String version) {

@@ -1,11 +1,17 @@
 package cn.wz.rpc;
 
 public class URL {
-
+    /**
+     * 协议名
+     */
     private String protocol;
-
+    /**
+     * ip地址
+     */
     private String host;
-
+    /**
+     * 端口
+     */
     private int port;
 
     public String getProtocol() {
@@ -13,6 +19,8 @@ public class URL {
     }
 
     public URL(String protocol, String host, int port, String path) {
+    }
+    public URL() {
 
     }
     public void setProtocol(String protocol) {
