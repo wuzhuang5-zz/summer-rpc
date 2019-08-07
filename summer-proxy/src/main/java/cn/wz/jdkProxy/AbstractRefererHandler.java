@@ -16,6 +16,6 @@ public abstract class AbstractRefererHandler<T> implements InvocationHandler {
 
     Object invokeRequest(Request request, Class returnType, boolean async) throws Throwable {
         RpcContext curContext = RpcContext.getRpcContext();
-
+        return null;
     }
 }
