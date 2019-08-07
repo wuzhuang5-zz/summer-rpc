@@ -34,8 +34,9 @@ public class RpcContext {
         RpcContext rpcContext = new RpcContext();
         if(request != null) {
             rpcContext.setRequest(request);
-            rpcContext.setClientRequestId(request.getAttachments());
+//            rpcContext.setClientRequestId(request.getAttachments());
         }
+        return null;
     }
     public void setAttributes(Object key, Object value) {
         attributes.put(key, value);

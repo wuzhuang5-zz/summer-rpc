@@ -1,5 +1,7 @@
 package cn.wz.rpc;
 
+import cn.wz.common.util.SummerConstans;
+
 public class URL {
     /**
      * 协议名
@@ -13,12 +15,22 @@ public class URL {
      * 端口
      */
     private int port;
-
+    /**
+     * 包名路径
+     */
+    private String path;
+    public String getGroup() {
+        return null;
+    }
     public String getProtocol() {
         return protocol;
     }
 
     public URL(String protocol, String host, int port, String path) {
+        this.protocol = protocol;
+        this.host = host;
+        this.port = port;
+
     }
     public URL() {
 
@@ -43,4 +55,8 @@ public class URL {
         this.port = port;
     }
 
+    @Override
+    public String toString() {
+        return protocol + SummerConstans.PROTOCOL_SEPARATOR + host + ":" + port + SummerConstans.PATH_SEPARATOR + path + "?group=summerrpc";
+    }
 }

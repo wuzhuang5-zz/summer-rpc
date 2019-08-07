@@ -11,7 +11,9 @@ import cn.wz.rpc.URL;
 import com.sun.media.jfxmedia.logging.Logger;
 import org.apache.commons.lang.StringUtils;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -23,12 +25,10 @@ public class ServiceConfig<T> {
      * 接口
      */
     Class<T> interfaceClass;
-
     /**
      * 服务实现类
      */
     private T ref;
-
     /**
      * 分组
      */
@@ -77,7 +77,7 @@ public class ServiceConfig<T> {
         if (StringUtils.isBlank(export)) {
             throw new SummerFrameworkException("export should not empty in service config" + interfaceClass.getName());
         }
-        int port = Integer.valueOf(export.split(":")[0]);
+        int port = Integer.parseInt(export.split(":")[1]);
         protocolConfig.setName(export);
         doExport(registerUrls, port, protocolConfig);
     }
@@ -115,6 +115,10 @@ public class ServiceConfig<T> {
         if (StringUtils.isBlank(protocolConfig.getName())) {
             protocolConfig.setName(ParamType.protocol.getValue());
         }
+        if (StringUtils.isBlank(host)) {
+            InetAddress inetAddress = InetAddress.getLoopbackAddress();
+            host = inetAddress.getHostAddress();
+        }
         URL serviceUrl = new URL(protocolConfig.getName(), host, port, interfaceClass.getName());
         ConfigHandler configHandler = new ConfigHandlerImpl();
         configHandler.export(interfaceClass, ref, registryList);
@@ -140,6 +144,9 @@ public class ServiceConfig<T> {
         this.registryConfig = registryConfig;
     }
 
+    public void setRegistry(RegistryConfig registryConfig) {
+        this.registryConfigs = Collections.singletonList(registryConfig);
+    }
     public void setProtocolConfig(ProtocolConfig protocolConfig) {
         this.protocolConfig = protocolConfig;
     }

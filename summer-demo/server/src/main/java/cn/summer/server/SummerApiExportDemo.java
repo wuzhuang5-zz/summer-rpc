@@ -24,7 +24,7 @@ public class SummerApiExportDemo {
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setRegProtocol("zookeeper");
         registryConfig.setAddress("127.0.0.1:2181");
-        serviceConfig.setRegistryConfig(registryConfig);
+        serviceConfig.setRegistry(registryConfig);
 
         //配置rpc协议  (默认summer协议)
         ProtocolConfig protocolConfig = new ProtocolConfig();
@@ -33,7 +33,7 @@ public class SummerApiExportDemo {
         serviceConfig.setProtocolConfig(protocolConfig);
 
         //配置export
-        serviceConfig.setExport("summer: 2233");
+        serviceConfig.setExport("summer:2233");
         serviceConfig.export();
     }
 }

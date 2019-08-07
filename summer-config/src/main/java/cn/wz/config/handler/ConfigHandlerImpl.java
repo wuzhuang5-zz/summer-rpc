@@ -8,7 +8,7 @@ import java.util.List;
 public class ConfigHandlerImpl implements ConfigHandler {
     @Override
     public <T> Exporter export(Class<T> interfaceClass, T ref, List<URL> registerList) {
-
+        URL url = registerList.get(0);
         return null;
     }
 }
