@@ -10,7 +10,7 @@ summer-rpc 是一个分布式服务框架，提供稳定高性能的RPC远程服
 
 
 ## Documentation
-- [中文文档](https://github.com/wuzhuang5/summer-rpc/wiki)
+- [文档](https://github.com/wuzhuang5/summer-rpc/wiki)
 
 
 ## Features
