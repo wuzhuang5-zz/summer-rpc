@@ -13,6 +13,8 @@ public class MethodConfig {
      * 超时时间
      */
     private Integer requestTimeout;
+
+
     public void setName(String name) {
         this.name = name;
     }

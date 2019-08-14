@@ -4,6 +4,9 @@ package cn.wz.config;
  * 协议配置
  */
 public class ProtocolConfig {
+    /**
+     *
+     */
     private String id;
     /**
      * 协议名

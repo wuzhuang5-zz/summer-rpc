@@ -21,25 +21,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author wz
  */
 public class ServiceConfig<T> {
-    /**
-     * 接口
-     */
+
     Class<T> interfaceClass;
-    /**
-     * 服务实现类
-     */
+
     private T ref;
-    /**
-     * 分组
-     */
+
     private String group;
-    /**
-     * 版本号
-     */
+
     private String version;
-    /**
-     * 注册中心配置
-     */
+
     private RegistryConfig registryConfig;
     /**
      * 注册中心列表 (应对多个注册中心)
