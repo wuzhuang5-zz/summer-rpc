@@ -18,6 +18,6 @@ public abstract class AbstractProtocol implements Protocol{
         return null;
     }
 
-    protected abstract <T> Exporter<T> createExporter(Provider<T> provider, URL url);
+    protected abstract  <T> Exporter<T> createExporter(Provider<T> provider, URL url);
 
 }
