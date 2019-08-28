@@ -15,6 +15,7 @@ public abstract class AbstractProtocol implements Protocol{
             throw new SummerFrameworkException(this.getClass().getSimpleName() + "export error: provider is null");
         }
         Exporter exporter = createExporter(provider, url);
+        exporter.
         return null;
     }
 

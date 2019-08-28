@@ -13,6 +13,12 @@ public class ConfigHandlerImpl implements ConfigHandler {
         Protocol protocol = new DefaultRpcProtocol();
         Provider<T> provider = new DefaultProvider();
         Exporter exporter = protocol.export(provider, url);
+        //注册服务
+        register(registerList, url);
         return exporter;
+    }
+
+    private void register(List<URL> registerList, URL url) {
+        //TODO 注册服务
     }
 }
