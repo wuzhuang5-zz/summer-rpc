@@ -37,6 +37,11 @@ public class DefaultRpcExporter implements Exporter {
     }
 
     @Override
+    public String desc() {
+        return null;
+    }
+
+    @Override
     public URL getUrl() {
         return null;
     }
