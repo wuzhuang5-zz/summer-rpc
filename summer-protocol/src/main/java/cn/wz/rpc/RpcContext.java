@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RpcContext {
-
+    /**
+     * RPC上下文
+     */
     private static final ThreadLocal<RpcContext> LOCAL_CONTEXT = ThreadLocal.withInitial(RpcContext::new);
 
     private Map<Object, Object> attributes = new HashMap<>();
