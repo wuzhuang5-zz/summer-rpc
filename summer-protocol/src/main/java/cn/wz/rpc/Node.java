@@ -10,5 +10,7 @@ public interface Node {
 
     void destroy();
 
+    String desc();
+
     URL getUrl();
 }
