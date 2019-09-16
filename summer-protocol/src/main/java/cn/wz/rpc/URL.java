@@ -7,21 +7,22 @@ public class URL {
      * 协议名
      */
     private String protocol;
+
     /**
      * ip地址
      */
     private String host;
+
     /**
      * 端口
      */
     private int port;
+
     /**
      * 包名路径
      */
     private String path;
-    public String getGroup() {
-        return null;
-    }
+
     public String getProtocol() {
         return protocol;
     }
@@ -30,10 +31,9 @@ public class URL {
         this.protocol = protocol;
         this.host = host;
         this.port = port;
-
+        this.path = path;
     }
     public URL() {
-
     }
     public void setProtocol(String protocol) {
         this.protocol = protocol;
