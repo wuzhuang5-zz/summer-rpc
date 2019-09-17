@@ -6,7 +6,7 @@ package cn.wz.rpc;
  */
 public interface Exporter<T> extends Node{
 
-    Provider<T> getProvider();
+    public abstract Provider<T> getProvider();
 
-    void unexport();
+    public abstract void unexport();
 }

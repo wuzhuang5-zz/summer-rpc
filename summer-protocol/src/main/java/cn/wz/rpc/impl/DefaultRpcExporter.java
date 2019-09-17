@@ -1,6 +1,7 @@
 package cn.wz.rpc.impl;
 
 import cn.wz.netty.Server;
+import cn.wz.rpc.AbstractNode;
 import cn.wz.rpc.Exporter;
 import cn.wz.rpc.Provider;
 import cn.wz.rpc.URL;
@@ -8,7 +9,7 @@ import cn.wz.rpc.URL;
 /**
  * 默认rpc暴露实现
  */
-public class DefaultRpcExporter implements Exporter {
+public class DefaultRpcExporter<T> extends AbstractNode implements Exporter<T> {
 
     protected Server server;
 
@@ -22,13 +23,9 @@ public class DefaultRpcExporter implements Exporter {
 
     }
 
-    public boolean doInit() {
-        return server.open();
-    }
-
     @Override
-    public void init() {
-
+    protected boolean doInit() {
+        return server.open();
     }
 
     @Override
