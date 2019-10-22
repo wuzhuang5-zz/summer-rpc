@@ -1,6 +1,7 @@
 package cn.wz.netty;
 
 import cn.wz.common.ChannelState;
+import cn.wz.common.log.LoggerUtil;
 
 public class NettyServer implements Channel {
 
@@ -8,10 +9,12 @@ public class NettyServer implements Channel {
 
     @Override
     public boolean open() {
-        return this.isAvailable();
+        if (isAvailable()) {
+            LoggerUtil.warn("NettyServer already open: url=" + );
+        }
     }
 
     public boolean isAvailable() {
-        return true;
+        return state.isAliveState();
     }
 }
