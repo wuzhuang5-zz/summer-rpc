@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class ServiceConfig<T> {
 
-    Class<T> interfaceClass;
+    private Class<T> interfaceClass;
 
     private T ref;
 
