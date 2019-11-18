@@ -13,7 +13,6 @@
         <module>summer-proxy</module>
       <module>summer-config</module>
       <module>summer-common</module>
-      <module>summer-registry</module>
       <module>summer-cluster</module>
       <module>summer-serializer</module>
       <module>summer-transport</module>
@@ -22,6 +21,7 @@
         <module>summer-spring</module>
         <module>summer-transport</module>
       <module>summer-transport</module>
+      <module>summer-register</module>
     </modules>
 
     <name>summer-rpc</name>
