@@ -25,10 +25,11 @@
     </dependency>
 
     <dependency>
-      <groupId>cn.wz.rpc</groupId>
+      <groupId>cn.wz</groupId>
       <artifactId>summer-protocol</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>compile</scope>
     </dependency>
-
   </dependencies>
 
   <build>
