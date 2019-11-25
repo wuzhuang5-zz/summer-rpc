@@ -16,4 +16,8 @@ public class ZookeeperRegister implements Register{
         }
 
     }
+
+    private void createNode() {
+
+    }
 }
