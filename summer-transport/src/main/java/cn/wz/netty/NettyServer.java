@@ -10,8 +10,9 @@ public class NettyServer implements Channel {
     @Override
     public boolean open() {
         if (isAvailable()) {
-            LoggerUtil.warn("NettyServer already open: url=" + );
+            LoggerUtil.warn("NettyServer already open: url=" + "");
         }
+        return true;
     }
 
     public boolean isAvailable() {

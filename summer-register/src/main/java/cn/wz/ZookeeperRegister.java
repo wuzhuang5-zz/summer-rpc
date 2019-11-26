@@ -9,6 +9,8 @@ import cn.wz.rpc.URL;
  */
 public class ZookeeperRegister implements Register{
 
+    private Zkclient zkClient;
+
     @Override
     public void register(URL url) {
         if (url == null) {
