@@ -1,21 +1,9 @@
 package cn.wz.config;
 
-import cn.wz.common.ParamType;
 import cn.wz.common.exception.SummerFrameworkException;
-import cn.wz.common.log.LoggerUtil;
-import cn.wz.common.util.NetUtil;
-import cn.wz.common.util.SummerConstans;
-import cn.wz.config.handler.ConfigHandler;
-import cn.wz.config.handler.ConfigHandlerImpl;
-import cn.wz.rpc.URL;
-import com.sun.media.jfxmedia.logging.Logger;
 import org.apache.commons.lang.StringUtils;
 
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author wz
@@ -24,11 +12,18 @@ public class ServiceConfig<T> {
 
     private Class<T> interfaceClass;
 
-    private T ref;
-
     private String group;
 
     private String version;
+
+    /**
+     * 实现类
+     */
+    private T ref;
+
+    /**
+     * todo 支持注册中心列表 暂时先只支持一个
+     */
 
     private RegistryConfig registryConfig;
 
@@ -44,8 +39,6 @@ public class ServiceConfig<T> {
 
     private List<MethodConfig> methodConfigs;
 
-    private String host;
-
     /**
      * 暴露服务，检查配置
      */
@@ -55,8 +48,7 @@ public class ServiceConfig<T> {
         checkInterfaceAndMethods(interfaceClass, methodConfigs);
 
         //获取注册中心URL   (protocol ip port)
-        List<URL> registerUrls = loadRegistryUrls();
-        if (registerUrls == null || registerUrls.isEmpty()) {
+        if (registryConfig == null) {
             throw new IllegalStateException("Should set registry config for service:" + interfaceClass.getName());
         }
         //验证rpc 协议和端口
@@ -65,7 +57,10 @@ public class ServiceConfig<T> {
         }
         int port = Integer.parseInt(export.split(":")[1]);
         protocolConfig.setName(export);
-        doExport(registerUrls, port, protocolConfig);
+        //todo 兼容其他协议 暂时先用summer
+
+        //config处理
+        ConfigHandler.export(interfaceClass, registryConfig);
     }
 
     private void checkInterfaceAndMethods(Class<?> interfaceClass, List<MethodConfig> methods) {
@@ -78,37 +73,6 @@ public class ServiceConfig<T> {
         //检查方法是否在接口中存在 TODO
     }
 
-//    private List<URL> loadRegistryUrls() {
-//        List<URL> registryList = new ArrayList<>();
-//        URL url = new URL();
-//        if (registryConfigs != null && !registryConfigs.isEmpty()) {
-//            for (RegistryConfig config : registryConfigs) {
-//                //ip:port
-//                String address = config.getAddress();
-//                if (StringUtils.isEmpty(address)) {
-//                    address = NetUtil.LOCALHOST + ":" + SummerConstans.DEFAULT_INT_VALUE;
-//                }
-//                url.setHost(address.split(":")[0]);
-//                url.setPort(Integer.valueOf(address.split(":")[1]));
-//                url.setProtocol(config.getRegProtocol());
-//            }
-//        }
-//        registryList.add(url);
-//        return registryList;
-//    }
-
-    private void doExport(List<URL> registryList, int port, ProtocolConfig protocolConfig) {
-        if (StringUtils.isBlank(protocolConfig.getName())) {
-            protocolConfig.setName(ParamType.protocol.getValue());
-        }
-        if (StringUtils.isBlank(host)) {
-            InetAddress inetAddress = InetAddress.getLoopbackAddress();
-            host = inetAddress.getHostAddress();
-        }
-        URL serviceUrl = new URL(protocolConfig.getName(), host, port, interfaceClass.getName());
-        ConfigHandler configHandler = new ConfigHandlerImpl();
-        configHandler.export(interfaceClass, ref, registryList);
-    }
 
     public void setVersion(String version) {
         this.version = version;
@@ -118,9 +82,6 @@ public class ServiceConfig<T> {
         this.interfaceClass = interfaceClass;
     }
 
-    public void setRef(T ref) {
-        this.ref = ref;
-    }
 
     public void setGroup(String group) {
         this.group = group;
@@ -130,9 +91,6 @@ public class ServiceConfig<T> {
         this.registryConfig = registryConfig;
     }
 
-    public void setRegistry(RegistryConfig registryConfig) {
-        this.registryConfigs = Collections.singletonList(registryConfig);
-    }
     public void setProtocolConfig(ProtocolConfig protocolConfig) {
         this.protocolConfig = protocolConfig;
     }
@@ -141,11 +99,12 @@ public class ServiceConfig<T> {
         this.export = export;
     }
 
-    public String getHost() {
-        return host;
+
+    public T getRef() {
+        return ref;
     }
 
-    public void setHost(String host) {
-        this.host = host;
+    public void setRef(T ref) {
+        this.ref = ref;
     }
 }

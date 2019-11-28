@@ -3,6 +3,7 @@ package cn.wz.rpc;
 import cn.wz.common.util.SummerConstans;
 
 public class URL {
+
     /**
      * 协议名
      */

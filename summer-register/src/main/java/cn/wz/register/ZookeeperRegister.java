@@ -1,17 +1,19 @@
-package cn.wz;
+package cn.wz.register;
 
 import cn.wz.common.exception.SummerFrameworkException;
 import cn.wz.rpc.URL;
 import org.apache.curator.framework.CuratorFramework;
-import org.apache.curator.framework.CuratorFrameworkFactory;
 
 /**
  * @Author: wz
- * @Date: 2019/11/18 12:28 下午
  */
-public class ZookeeperRegister implements Register{
+public class ZookeeperRegister implements Register {
 
     CuratorFramework zkClient;
+
+    public ZookeeperRegister() {
+
+    }
 
     @Override
     public void register(URL url) {
@@ -22,6 +24,8 @@ public class ZookeeperRegister implements Register{
     }
 
     private void createNode() {
-        zkClient = CuratorFrameworkFactory.newClient();
+        //summer://ip:port/cn.wz.summer.demo.DemoService?interface=com.alibaba.dubbo.demo.DemoService&methods=sayHello
+
+//        zkClient = CuratorFrameworkFactory.newClient();
     }
 }
