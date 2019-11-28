@@ -2,6 +2,8 @@ package cn.wz;
 
 import cn.wz.common.exception.SummerFrameworkException;
 import cn.wz.rpc.URL;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
 
 /**
  * @Author: wz
@@ -9,7 +11,7 @@ import cn.wz.rpc.URL;
  */
 public class ZookeeperRegister implements Register{
 
-    private Zkclient zkClient;
+    CuratorFramework zkClient;
 
     @Override
     public void register(URL url) {
@@ -20,6 +22,6 @@ public class ZookeeperRegister implements Register{
     }
 
     private void createNode() {
-
+        zkClient = CuratorFrameworkFactory.newClient();
     }
 }

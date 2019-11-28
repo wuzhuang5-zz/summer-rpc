@@ -31,30 +31,26 @@ public class ServiceConfig<T> {
     private String version;
 
     private RegistryConfig registryConfig;
-    /**
-     * 注册中心列表 (应对多个注册中心)
-     */
-    private List<RegistryConfig> registryConfigs;
+
     /**
      * 协议配置
      */
     private ProtocolConfig protocolConfig;
+
     /**
      * 协议端口  （protocol+port）
      */
     private String export;
 
-    private AtomicBoolean exported = new AtomicBoolean();
-
     private List<MethodConfig> methodConfigs;
+
     private String host;
+
     /**
      * 暴露服务，检查配置
      */
     public synchronized void export() {
-        if (exported.get()) {
-            LoggerUtil.warn(String.format("%s has already been expoted, so ignore the export request!", interfaceClass.getName()));
-        }
+
         //校验接口和方法
         checkInterfaceAndMethods(interfaceClass, methodConfigs);
 
@@ -82,24 +78,24 @@ public class ServiceConfig<T> {
         //检查方法是否在接口中存在 TODO
     }
 
-    private List<URL> loadRegistryUrls() {
-        List<URL> registryList = new ArrayList<>();
-        URL url = new URL();
-        if (registryConfigs != null && !registryConfigs.isEmpty()) {
-            for (RegistryConfig config : registryConfigs) {
-                //ip:port
-                String address = config.getAddress();
-                if (StringUtils.isEmpty(address)) {
-                    address = NetUtil.LOCALHOST + ":" + SummerConstans.DEFAULT_INT_VALUE;
-                }
-                url.setHost(address.split(":")[0]);
-                url.setPort(Integer.valueOf(address.split(":")[1]));
-                url.setProtocol(config.getRegProtocol());
-            }
-        }
-        registryList.add(url);
-        return registryList;
-    }
+//    private List<URL> loadRegistryUrls() {
+//        List<URL> registryList = new ArrayList<>();
+//        URL url = new URL();
+//        if (registryConfigs != null && !registryConfigs.isEmpty()) {
+//            for (RegistryConfig config : registryConfigs) {
+//                //ip:port
+//                String address = config.getAddress();
+//                if (StringUtils.isEmpty(address)) {
+//                    address = NetUtil.LOCALHOST + ":" + SummerConstans.DEFAULT_INT_VALUE;
+//                }
+//                url.setHost(address.split(":")[0]);
+//                url.setPort(Integer.valueOf(address.split(":")[1]));
+//                url.setProtocol(config.getRegProtocol());
+//            }
+//        }
+//        registryList.add(url);
+//        return registryList;
+//    }
 
     private void doExport(List<URL> registryList, int port, ProtocolConfig protocolConfig) {
         if (StringUtils.isBlank(protocolConfig.getName())) {
