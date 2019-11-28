@@ -9,10 +9,15 @@ import org.apache.curator.framework.CuratorFramework;
  */
 public class ZookeeperRegister implements Register {
 
+    private String ip;
+
+    private int port;
+
     CuratorFramework zkClient;
 
-    public ZookeeperRegister() {
-
+    public ZookeeperRegister(String ip, int port) {
+        this.ip = ip;
+        this.port = port;
     }
 
     @Override
