@@ -2,6 +2,9 @@ package cn.wz.rpc;
 
 import cn.wz.common.util.SummerConstans;
 
+/**
+ * @author wz
+ */
 public class URL {
 
     /**
@@ -28,14 +31,15 @@ public class URL {
         return protocol;
     }
 
+    public URL() {}
+
     public URL(String protocol, String host, int port, String path) {
         this.protocol = protocol;
         this.host = host;
         this.port = port;
         this.path = path;
     }
-    public URL() {
-    }
+
     public void setProtocol(String protocol) {
         this.protocol = protocol;
     }
@@ -54,6 +58,14 @@ public class URL {
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     @Override

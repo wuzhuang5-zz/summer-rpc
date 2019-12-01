@@ -55,8 +55,7 @@ public class ServiceConfig<T> {
         if (StringUtils.isBlank(export)) {
             throw new SummerFrameworkException("export should not empty in service config" + interfaceClass.getName());
         }
-        int port = Integer.parseInt(export.split(":")[1]);
-        protocolConfig.setName(export);
+//        protocolConfig.setName(export);
         //todo 兼容其他协议 暂时先用summer
 
         //config处理
