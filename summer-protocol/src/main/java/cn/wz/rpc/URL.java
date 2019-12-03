@@ -70,6 +70,6 @@ public class URL {
 
     @Override
     public String toString() {
-        return protocol + SummerConstans.PROTOCOL_SEPARATOR + host + ":" + port + SummerConstans.PATH_SEPARATOR + path + "?group=summerrpc";
+        return protocol + SummerConstans.PROTOCOL_SEPARATOR + host + ":" + port + SummerConstans.PATH_SEPARATOR + path + "?interface="+path;
     }
 }

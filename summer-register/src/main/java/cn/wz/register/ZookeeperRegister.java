@@ -2,13 +2,11 @@ package cn.wz.register;
 
 import cn.wz.common.exception.SummerFrameworkException;
 import cn.wz.common.log.LoggerUtil;
-import cn.wz.common.util.SummerConstans;
 import cn.wz.rpc.URL;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryOneTime;
-import org.apache.zookeeper.CreateMode;
 
 /**
  * @Author: wz
@@ -35,11 +33,11 @@ public class ZookeeperRegister implements Register {
         if (url == null) {
             throw new SummerFrameworkException("register url is null");
         }
-        //临时节点
         try {
-            System.out.println(SummerConstans.PATH_SEPARATOR + url.getPath());
-            zkClient.create().withMode(CreateMode.EPHEMERAL).forPath(SummerConstans.PATH_SEPARATOR+SummerConstans.SUMMER,
-                    (url.getPath()).getBytes());
+            zkClient.create().forPath("/summer",url.toString().getBytes());
+            byte[] result = zkClient.getData().forPath("/summer");
+            String str = new String(result);
+            System.out.println(str);
         } catch (Exception e) {
             e.printStackTrace();
             LoggerUtil.error(url.getProtocol()+"创建节点失败");

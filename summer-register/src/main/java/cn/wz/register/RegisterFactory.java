@@ -9,9 +9,9 @@ import cn.wz.rpc.URL;
 public class RegisterFactory {
     public static final String ZK = "zookeeper";
 
-    public static Register createRegister(URL url) {
-        if (ZK.equals(url.getProtocol())) {
-            return new ZookeeperRegister(url.getHost()+":"+url.getPort());
+    public static Register createRegister(String serviceUrl, URL registerUrl) {
+        if (ZK.equals(registerUrl.getProtocol())) {
+            return new ZookeeperRegister(registerUrl.getHost()+":"+registerUrl.getPort());
         }
         //todo 默认使用本地
         throw new SummerFrameworkException("请选择注册中心");

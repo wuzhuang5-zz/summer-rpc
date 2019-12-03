@@ -1,20 +1,23 @@
 package cn.wz.config;
 
+import cn.wz.common.log.LoggerUtil;
 import cn.wz.register.Register;
 import cn.wz.register.RegisterFactory;
 import cn.wz.rpc.URL;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * @Author: wz
  */
 public class ConfigHandler {
 
-    public static void export(Class<?> interfaceClass, RegistryConfig registryConfig) {
+    public static void export(Class<?> interfaceClass, String serverUrl, RegistryConfig registryConfig) throws UnknownHostException {
         //todo export
-        String address = registryConfig.getAddress();
-        URL url = new URL(registryConfig.getRegProtocol(), address.split(":")[0],
-                Integer.parseInt(address.split(":")[1]), interfaceClass.getName());
-        Register register = RegisterFactory.createRegister(url);
+        URL registerUrl = new URL(registryConfig.getRegProtocol(), registryConfig.getAddress().split(":")[0],
+                Integer.parseInt(registryConfig.getAddress().split(":")[1]), interfaceClass.getName());
+        Register register = RegisterFactory.createRegister(serverUrl, registerUrl);
         register.register(url);
     }
 }

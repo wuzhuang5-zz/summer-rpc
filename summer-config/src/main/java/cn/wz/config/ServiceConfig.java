@@ -1,8 +1,11 @@
 package cn.wz.config;
 
 import cn.wz.common.exception.SummerFrameworkException;
+import cn.wz.common.log.LoggerUtil;
+import cn.wz.rpc.URL;
 import org.apache.commons.lang.StringUtils;
 
+import java.net.InetAddress;
 import java.util.List;
 
 /**
@@ -57,9 +60,14 @@ public class ServiceConfig<T> {
         }
 //        protocolConfig.setName(export);
         //todo 兼容其他协议 暂时先用summer
-
-        //config处理
-        ConfigHandler.export(interfaceClass, registryConfig);
+        try {
+            String host = InetAddress.getLocalHost().getHostAddress();
+            String serviceUrl = new URL(export.split(":")[0], host, Integer.parseInt(export.split(":")[1]), interfaceClass.getName()).toString();
+            ConfigHandler.export(interfaceClass,serviceUrl, registryConfig);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LoggerUtil.error("summer export service has exception");
+        }
     }
 
     private void checkInterfaceAndMethods(Class<?> interfaceClass, List<MethodConfig> methods) {
