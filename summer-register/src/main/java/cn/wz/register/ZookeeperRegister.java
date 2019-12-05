@@ -33,20 +33,13 @@ public class ZookeeperRegister implements Register {
         if (url == null) {
             throw new SummerFrameworkException("register url is null");
         }
-        try {
-            zkClient.create().forPath("/summer",url.toString().getBytes());
-            byte[] result = zkClient.getData().forPath("/summer");
-            String str = new String(result);
-            System.out.println(str);
-        } catch (Exception e) {
-            e.printStackTrace();
-            LoggerUtil.error(url.getProtocol()+"创建节点失败");
-        }
     }
 
-    private void createNode() {
-        //summer://ip:port/cn.wz.summer.demo.DemoService?interface=com.alibaba.dubbo.demo.DemoService&methods=sayHello
+    private void createNode(String path, byte[] data) throws Exception {
+        zkClient.create().forPath(path,data);
+    }
 
-//        zkClient = CuratorFrameworkFactory.newClient();
+    private void deleteNode(String path) {
+
     }
 }
