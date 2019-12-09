@@ -15,7 +15,7 @@ public class NettyServer implements Channel {
         return true;
     }
 
-    public boolean isAvailable() {
+    private boolean isAvailable() {
         return state.isAliveState();
     }
 }
