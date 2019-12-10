@@ -19,6 +19,7 @@ public class TimeServer {
                 System.out.println("accept()阻塞中。。。");
                 socket = server.accept();
                 System.out.println("有请求进来。。。");
+                //一个请求 一个新线程
                 new Thread(new TimeServerHandler(socket)).start();
             }
         } finally {
