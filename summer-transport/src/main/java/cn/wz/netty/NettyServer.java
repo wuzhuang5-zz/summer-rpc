@@ -3,6 +3,8 @@ package cn.wz.netty;
 import cn.wz.common.ChannelState;
 import cn.wz.common.log.LoggerUtil;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
@@ -21,6 +23,8 @@ public class NettyServer implements Server {
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
     private URL url;
+    private Channel serverChannel;
+
     @Override
     public boolean open() {
         if (isAvailable()) {
@@ -37,10 +41,15 @@ public class NettyServer implements Server {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline channelPipeline = ch.pipeline();
-                        channelPipeline.addLast()
+//                        channelPipeline.addLast()
+                        NettyChannelHandler handler = new NettyChannelHandler();
+                        channelPipeline.addLast("hadler", handler);
                     }
                 });
-        return true;
+        ChannelFuture channelFuture = serverBootstrap.bind(url.getPort());
+        serverChannel = channelFuture.channel();
+//        channelFuture.syncUninterruptibly();
+        return state.isAliveState();
     }
 
     private boolean isAvailable() {
