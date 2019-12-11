@@ -5,5 +5,6 @@ import io.netty.channel.ChannelHandlerAdapter;
 /**
  * @Author: wz
  */
-public class TimeServerHandler extends ChannelHandlerAdapter {
+class TimeServerHandler extends ChannelHandlerAdapter {
+
 }

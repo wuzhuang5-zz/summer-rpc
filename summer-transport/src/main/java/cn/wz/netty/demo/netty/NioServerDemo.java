@@ -13,7 +13,7 @@ import java.util.Iterator;
  * @Author: wz
  */
 public class NioServerDemo {
-    public static void testServer() throws IOException {
+    private static void testServer() throws IOException {
         int port = 8080;
         // 1、获取Selector选择器
         Selector selector = Selector.open();
