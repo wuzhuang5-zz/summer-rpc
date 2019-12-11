@@ -1,4 +1,9 @@
 package cn.wz.loadbalance;
 
-public abstract class AbstractLoadBalance implements LoadBalance{
+/**
+ * 模板方法
+ * @param <T>
+ */
+public abstract class AbstractLoadBalance<T> implements LoadBalance<T>{
+
 }
