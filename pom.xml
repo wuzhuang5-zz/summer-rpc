@@ -14,7 +14,6 @@
       <module>summer-config</module>
       <module>summer-common</module>
       <module>summer-cluster</module>
-      <module>summer-serializer</module>
       <module>summer-transport</module>
         <module>summer-test</module>
         <module>summer-protocol</module>

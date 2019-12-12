@@ -1,16 +1,15 @@
-package cn.wz;
+package cn.wz.netty.serializtion;
 
 import java.io.IOException;
 
 /**
- * 序列化接口
+ * @Author: wz
  */
 public interface Serialization {
     /**
      * 序列化
      * @param object
      * @return
-     * @throws IOException
      */
     byte[] serialize(Object object) throws IOException;
 
@@ -20,7 +19,6 @@ public interface Serialization {
      * @param clazz
      * @param <T>
      * @return
-     * @throws IOException
      */
-    <T> T deserialize(byte[] bytes, Class<T> clazz) throws IOException;
+    <T> T  deserialize(byte[] bytes, Class<T> clazz);
 }
