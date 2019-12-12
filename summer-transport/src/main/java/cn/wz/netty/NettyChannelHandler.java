@@ -1,10 +1,10 @@
 package cn.wz.netty;
 
-import io.netty.channel.ChannelHandlerAdapter;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
  * @Author: wz
  */
-public class NettyChannelHandler extends ChannelHandlerAdapter {
+public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
 }

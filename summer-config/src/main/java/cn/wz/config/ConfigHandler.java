@@ -1,6 +1,5 @@
 package cn.wz.config;
 
-import cn.wz.common.log.LoggerUtil;
 import cn.wz.register.Register;
 import cn.wz.register.RegisterFactory;
 import cn.wz.rpc.URL;
