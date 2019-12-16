@@ -27,7 +27,8 @@ public class ExtensionLoader<T> {
     }
 
     private static synchronized <T> ExtensionLoader<T> initExtensionLoader(Class type) {
-
+        ExtensionLoader<T> loader = new ExtensionLoader<>();
+        return loader;
     }
 
 
