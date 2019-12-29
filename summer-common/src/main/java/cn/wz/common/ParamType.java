@@ -1,6 +1,9 @@
 package cn.wz.common;
 
 public enum ParamType {
+    /**
+     * 协议
+     */
     protocol("protocol", "summer");
 
 

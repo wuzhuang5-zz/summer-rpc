@@ -1,11 +1,8 @@
 package cn.wz.common.log;
 
 public class LoggerUtil {
-    private static LogService logService = new DefaultLogService();// 可以通过设置为不同logservice控制log行为。
+    private static LogService logService = new DefaultLogService();
 
-    public static boolean isTraceEnabled() {
-        return logService.isTraceEnabled();
-    }
 
     public static boolean isDebugEnabled() {
         return logService.isDebugEnabled();
@@ -17,14 +14,6 @@ public class LoggerUtil {
 
     public static boolean isErrorEnabled() {
         return logService.isErrorEnabled();
-    }
-
-    public static boolean isStatsEnabled() {
-        return logService.isStatsEnabled();
-    }
-
-    public static void trace(String msg) {
-        logService.trace(msg);
     }
 
     public static void debug(String msg) {
@@ -75,21 +64,6 @@ public class LoggerUtil {
         logService.error(msg, t);
     }
 
-    public static void accessLog(String msg) {
-        logService.accessLog(msg);
-    }
-
-    public static void accessStatsLog(String msg) {
-        logService.accessStatsLog(msg);
-    }
-
-    public static void accessStatsLog(String format, Object... argArray) {
-        logService.accessStatsLog(format, argArray);
-    }
-
-    public static void accessProfileLog(String format, Object... argArray) {
-        logService.accessProfileLog(format, argArray);
-    }
 
     public static LogService getLogService() {
         return logService;

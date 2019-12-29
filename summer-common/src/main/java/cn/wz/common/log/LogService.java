@@ -1,9 +1,6 @@
 package cn.wz.common.log;
 
 public interface LogService {
-    void trace(String msg);
-
-    void trace(String format, Object... argArray);
 
     void debug(String msg);
 
@@ -29,23 +26,11 @@ public interface LogService {
 
     void error(String msg, Throwable t);
 
-    void accessLog(String msg);
-
-    void accessProfileLog(String format, Object... argArray);
-
-    void accessStatsLog(String msg);
-
-    void accessStatsLog(String format, Object... argArray);
-
-    boolean isTraceEnabled();
 
     boolean isDebugEnabled();
-
-    boolean isInfoEnabled();
 
     boolean isWarnEnabled();
 
     boolean isErrorEnabled();
 
-    boolean isStatsEnabled();
 }

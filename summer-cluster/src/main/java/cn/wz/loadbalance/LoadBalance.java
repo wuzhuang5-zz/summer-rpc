@@ -1,6 +1,7 @@
 package cn.wz.loadbalance;
 
 import cn.wz.rpc.Referer;
+import cn.wz.rpc.Request;
 
 /**
  * 负载均衡

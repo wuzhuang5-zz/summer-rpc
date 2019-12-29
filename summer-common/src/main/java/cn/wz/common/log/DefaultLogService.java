@@ -4,24 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DefaultLogService implements LogService{
-    private static Logger trace = LoggerFactory.getLogger("trace");
     private static Logger debug = LoggerFactory.getLogger("debug");
     private static Logger info = LoggerFactory.getLogger("info");
     private static Logger warn = LoggerFactory.getLogger("warn");
     private static Logger error = LoggerFactory.getLogger("error");
-    private static Logger access = LoggerFactory.getLogger("accessLog");
-    private static Logger serviceStats = LoggerFactory.getLogger("serviceStatsLog");
-    private static Logger profileLogger = LoggerFactory.getLogger("profile");
 
-    @Override
-    public void trace(String msg) {
-        trace.trace(msg);
-    }
-
-    @Override
-    public void trace(String format, Object... argArray) {
-        trace.trace(format, argArray);
-    }
     @Override
     public void debug(String msg) {
         debug.debug(msg);
@@ -70,37 +57,12 @@ public class DefaultLogService implements LogService{
     public void error(String msg, Throwable t) {
         error.error(msg, t);
     }
-    @Override
-    public void accessLog(String msg) {
-        access.info(msg);
-    }
-    @Override
-    public void accessStatsLog(String msg) {
-        serviceStats.info(msg);
-    }
-    @Override
-    public void accessStatsLog(String format, Object... argArray) {
-        serviceStats.info(format, argArray);
-    }
-    @Override
-    public void accessProfileLog(String format, Object... argArray) {
-        profileLogger.info(format, argArray);
-    }
-
-    @Override
-    public boolean isTraceEnabled() {
-        return trace.isTraceEnabled();
-    }
 
     @Override
     public boolean isDebugEnabled() {
         return debug.isDebugEnabled();
     }
 
-    @Override
-    public boolean isInfoEnabled() {
-        return info.isInfoEnabled();
-    }
 
     @Override
     public boolean isWarnEnabled() {
@@ -112,10 +74,6 @@ public class DefaultLogService implements LogService{
         return error.isErrorEnabled();
     }
 
-    @Override
-    public boolean isStatsEnabled() {
-        return serviceStats.isInfoEnabled();
-    }
 
 
 }

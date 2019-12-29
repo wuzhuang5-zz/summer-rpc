@@ -2,6 +2,10 @@ package cn.wz.common.extension;
 
 import cn.wz.common.exception.SummerFrameworkException;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -46,26 +50,28 @@ public class ExtensionLoader<T> {
     }
 
     public T getExtension(String name) {
-        checkInit();
-    }
-
-
-    private void checkInit() {
         if (!init) {
-            loadExtensionClasses();
+           extensionClasses = loadExtensionClasses(PREFIX);
         }
+        return null;
+//        return extensionClasses.getClass();
     }
 
-    private synchronized void loadExtensionClasses() {
-        if (init) {
-            return;
-        }
-        extensionClasses = loadExtensionClasses(PREFIX);
-    }
 
     private synchronized ConcurrentMap<String, Class<T>> loadExtensionClasses(String prefix) {
         String fullName = prefix + type.getName();
-
+        List<String> ClassNames = new ArrayList<>();
+        try {
+            Enumeration<URL> urls;
+            if (classLoader == null) {
+                urls = ClassLoader.getSystemResources(fullName);
+            } else {
+                urls = classLoader.getResources(fullName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static synchronized <T> ExtensionLoader<T> initExtensionLoader(Class type) {
