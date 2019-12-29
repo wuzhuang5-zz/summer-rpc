@@ -6,6 +6,7 @@ import java.io.IOException;
  * @Author: wz
  */
 public interface Serialization {
+
     /**
      * 序列化
      * @param object
@@ -20,5 +21,5 @@ public interface Serialization {
      * @param <T>
      * @return
      */
-    <T> T  deserialize(byte[] bytes, Class<T> clazz);
+    <T> T  deserialize(byte[] bytes, Class<T> clazz) throws IOException;
 }
