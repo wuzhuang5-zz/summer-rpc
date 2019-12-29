@@ -12,6 +12,7 @@ import io.netty.channel.socket.SocketChannel;
 import java.net.URL;
 
 /**
+ * 启动summer-rpc服务
  * @author wz
  */
 public class NettyServer implements Server {
@@ -42,11 +43,9 @@ public class NettyServer implements Server {
                         channelPipeline.addLast("hadler", handler);
                     }
                 });
-        //
         serverBootstrap.childOption(ChannelOption.SO_KEEPALIVE, true);
         ChannelFuture channelFuture = serverBootstrap.bind(url.getPort());
         serverChannel = channelFuture.channel();
-//        channelFuture.syncUninterruptibly();
         return state.isAliveState();
     }
 

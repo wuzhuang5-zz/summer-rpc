@@ -14,7 +14,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof NettyMessage) {
-            //todo  采用线程池
+            //todo  采用线程池优化
             new Thread(() -> {
                 processMessage(ctx, (NettyMessage) msg);
             });
