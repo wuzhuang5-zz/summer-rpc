@@ -30,6 +30,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         SocketAddress socketAddress = ctx.channel().remoteAddress();
         String remoteIp = null;
         if (socketAddress != null) {
+            //获取客户端ip
             remoteIp = ((InetSocketAddress) socketAddress).getAddress().getHostAddress();
         }
         Object result;
