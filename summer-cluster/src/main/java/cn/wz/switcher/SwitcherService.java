@@ -2,6 +2,10 @@ package cn.wz.switcher;
 
 import java.util.List;
 
+/**
+ * 开关接口
+ */
+
 public interface SwitcherService {
     /**
      * 获取接口降级开关
