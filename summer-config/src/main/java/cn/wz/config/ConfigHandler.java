@@ -2,6 +2,7 @@ package cn.wz.config;
 
 import cn.wz.register.Register;
 import cn.wz.register.RegisterFactory;
+import cn.wz.rpc.DefaultExporterImpl;
 import cn.wz.rpc.Exporter;
 import cn.wz.rpc.URL;
 
@@ -12,9 +13,10 @@ import java.net.UnknownHostException;
  */
 public class ConfigHandler {
 
-    public static void export(Class<?> interfaceClass, String serverUrl, RegistryConfig registryConfig) throws UnknownHostException {
+    public static <T> void export(Class<T> interfaceClass, String serverUrl, T ref, RegistryConfig registryConfig) throws UnknownHostException {
         //todo export
-        Exporter exporter
+        Exporter exporter = new DefaultExporterImpl();
+        exporter.export(interfaceClass, serverUrl, ref);
 
 
         //register service

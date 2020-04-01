@@ -63,7 +63,7 @@ public class ServiceConfig<T> {
         try {
             String host = InetAddress.getLocalHost().getHostAddress();
             String serviceUrl = new URL(export.split(":")[0], host, Integer.parseInt(export.split(":")[1]), interfaceClass.getName()).toString();
-            ConfigHandler.export(interfaceClass,serviceUrl, registryConfig);
+            ConfigHandler.export(interfaceClass,serviceUrl,ref, registryConfig);
         } catch (Exception e) {
             e.printStackTrace();
             LoggerUtil.error("summer export service has exception");
