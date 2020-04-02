@@ -13,10 +13,10 @@ import java.net.UnknownHostException;
  */
 public class ConfigHandler {
 
-    public static <T> void export(Class<T> interfaceClass, String serverUrl, T ref, RegistryConfig registryConfig) throws UnknownHostException {
+    public static <T> void export(Class<T> interfaceClass, URL serverUrl, T ref, RegistryConfig registryConfig) throws UnknownHostException {
         //todo export
         Exporter exporter = new DefaultExporterImpl();
-        exporter.export(interfaceClass, serverUrl, ref);
+        boolean exported = exporter.export(interfaceClass, serverUrl, ref);
 
 
         //register service

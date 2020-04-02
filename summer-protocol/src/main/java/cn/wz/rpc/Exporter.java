@@ -12,5 +12,5 @@ public interface Exporter {
      * @param ref  生产者实现类引用
      * @param <T>
      */
-    public <T>void export(Class<T> interfaceClass, URL url, T ref);
+     <T> boolean export(Class<T> interfaceClass, URL url, T ref);
 }

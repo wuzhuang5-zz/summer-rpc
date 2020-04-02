@@ -62,7 +62,7 @@ public class ServiceConfig<T> {
         //todo 兼容其他协议 暂时先用summer
         try {
             String host = InetAddress.getLocalHost().getHostAddress();
-            String serviceUrl = new URL(export.split(":")[0], host, Integer.parseInt(export.split(":")[1]), interfaceClass.getName()).toString();
+            URL serviceUrl = new URL(export.split(":")[0], host, Integer.parseInt(export.split(":")[1]), interfaceClass.getName());
             ConfigHandler.export(interfaceClass,serviceUrl,ref, registryConfig);
         } catch (Exception e) {
             e.printStackTrace();

@@ -9,7 +9,7 @@ import cn.wz.rpc.URL;
 public class RegisterFactory {
     public static final String ZK = "zookeeper";
 
-    public static Register createRegister(String serviceUrl, URL registerUrl) {
+    public static Register createRegister(URL serviceUrl, URL registerUrl) {
         if (ZK.equals(registerUrl.getProtocol())) {
             return new ZookeeperRegister(registerUrl.getHost()+":"+registerUrl.getPort());
         }
