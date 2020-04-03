@@ -2,6 +2,7 @@ package cn.wz.netty;
 
 import cn.wz.common.ChannelState;
 import cn.wz.common.log.LoggerUtil;
+import cn.wz.rpc.URL;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.Channel;
@@ -9,10 +10,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.ServerSocketChannel;
 import io.netty.channel.socket.SocketChannel;
 
-import java.net.URL;
-
 /**
- * 启动summer-rpc服务
+ * netty server
  * @author wz
  */
 public class NettyServer implements Server {
@@ -23,6 +22,10 @@ public class NettyServer implements Server {
     private URL url;
     private Channel serverChannel;
 
+
+    public NettyServer(URL url) {
+        this.url = url;
+    }
     @Override
     public boolean open() {
         if (isAvailable()) {
